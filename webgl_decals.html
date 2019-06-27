@@ -237,8 +237,8 @@
 
 
 				container = new THREE.Object3D();
-				container.position.set(0.5, -0.2, 0.5);
-				container.rotation.z = Math.PI/2 ;
+				// container.position.set(0.5, -0.2, 0.5);
+				// container.rotation.z = Math.PI/2 ;
 				scene.add( container );
 
 				container.add( mesh );
@@ -263,19 +263,20 @@
 			var scale = params.minScale + Math.random() * ( params.maxScale - params.minScale );
 			size.set( scale, scale, scale );
 
-			var material = decalMaterial.clone();
-			// material.color.setHex( Math.random() * 0xffffff );
+			// var material = decalMaterial.clone();
+			var material = new THREE.MeshNormalMaterial();
 
 			var m = new THREE.Mesh( new THREE.DecalGeometry( mesh, position, orientation, size ), material );
 
-			decals.push( m );
-			// scene.add( m );
+			var helper = new THREE.VertexNormalsHelper(m, 0.02, 0xff00ff, 1);
 
+			decals.push( m );
 
 			// Translate the position of m from world to local
 			mesh.updateMatrixWorld();
 			m.applyMatrix( new THREE.Matrix4().getInverse( mesh.matrixWorld ) );
-			mesh.add( m );
+			helper.applyMatrix( new THREE.Matrix4().getInverse( mesh.matrixWorld ) );
+			mesh.add( m, helper );
 
 		}
 
@@ -308,8 +309,8 @@
 
 			stats.update();
 
-			container.rotation.x += 0.01 ;
-			container.rotation.y += 0.01 ;
+			container.rotation.x += 0.004 ;
+			container.rotation.y += 0.004 ;
 
 		}
 
