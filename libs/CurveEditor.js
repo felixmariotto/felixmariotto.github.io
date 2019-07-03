@@ -3,7 +3,7 @@
 
 
 
-function SectionModeler() {
+function CurveEditor() {
 
 
 	var handles = [];
