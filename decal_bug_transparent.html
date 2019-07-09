@@ -52,6 +52,9 @@
 			depthWrite: false,
 			polygonOffset: true,
 			polygonOffsetFactor: - 4,
+
+			// side: THREE.DoubleSide,
+
 			wireframe: false
 		} );
 
@@ -66,6 +69,7 @@
 		var params = {
 			minScale: 0.1,
 			maxScale: 0.3,
+			moveRange: 0.2,
 			rotate: true,
 			rotate_model: false,
 			shake_model: false,
@@ -210,6 +214,7 @@
 
 			gui.add( params, 'minScale', 0.1, 1 );
 			gui.add( params, 'maxScale', 0.1, 1 );
+			gui.add( params, 'moveRange', 0.02, 0.4 );
 			gui.add( params, 'rotate' );
 			gui.add( params, 'clear' );
 			gui.add( params, 'rotate_model' );
@@ -270,6 +275,8 @@
 
 			var m = new THREE.Mesh( new THREE.DecalGeometry( mesh, position, orientation, size ), material );
 
+			m.renderOrder = 2 ;
+
 			decals.push( m );
 
 			// Translate the position of m from world to local
@@ -310,7 +317,7 @@
 			};
 
 			if (params.shake_model) {
-				mesh.position.y = Math.sin( Date.now() / 400 ) * 0.2 ;
+				mesh.position.y = Math.sin( Date.now() / 400 ) * params.moveRange ;
 			};
 
 		};
