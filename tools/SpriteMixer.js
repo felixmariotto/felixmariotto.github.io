@@ -23,7 +23,7 @@ function SpriteMixer() {
 		if ( eventName && callback ) {
 			listeners.push(  { eventName, callback }  );
 		} else {
-			throw 'an argument is missing';
+			throw 'Error : an argument is missing';
 		};
 	};
 
@@ -62,8 +62,16 @@ function SpriteMixer() {
 			// Restarts the animation if the last frame was reached at last call.
 			if (actionSprite.currentTile == actionSprite.numberOfTiles) {
 				actionSprite.currentTile = 0;
+				// Call the user callback on the event 'loop'
 				if ( actionSprite.mustLoop == true ) {
-					console.log('loop');
+					listeners.forEach( (listener)=> {
+						if ( listener.eventName == 'loop' ) {
+							let event = {
+								coucou = 'coucou'
+							};
+							listener.callback( event );
+						};
+					});
 				};
 			};
 
