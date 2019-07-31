@@ -67,7 +67,7 @@ function SpriteMixer() {
 					listeners.forEach( (listener)=> {
 						if ( listener.eventName == 'loop' ) {
 							let event = {
-								coucou = 'coucou'
+								coucou:'coucou'
 							};
 							listener.callback( event );
 						};
