@@ -31,6 +31,8 @@ function SpriteMixer() {
 
 
 	function updateSprite(actionSprite, milliSec) {
+
+		console.log('coucou')
 		
 		actionSprite.currentDisplayTime += milliSec;
 
