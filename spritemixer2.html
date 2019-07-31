@@ -33,6 +33,10 @@
 			flex-direction: column;
 		}
 
+			#btn-container>div {
+				margin-bottom: 15px;
+			}
+
 		button {
 			font-size: 1.2em;
 			padding: 8px;
@@ -74,7 +78,7 @@
 		})
 		
 		
-		var scene, renderer, camera, controls, clock, stats, group;
+		var scene, renderer, camera, controls, clock, stats;
 		const WIDTH = window.innerWidth;
 		const HEIGHT = window.innerHeight;
 
@@ -83,7 +87,11 @@
 		///////////////////////
 		///	INITIALISATION
 		///////////////////////
+
 		var spriteMixer = SpriteMixer();
+		var group;
+		var actions = []; // This will store the actionSprites that we want to play, in playing order.
+		var actionToPlay = 0 ;
 
 
 
@@ -173,9 +181,14 @@
 
 
 		////// NEW
+
 		function onPlay() {
 			console.log('click play');
+			actions[ actionToPlay ].playOnce();
 		};
+
+
+
 
 		function onPause() {
 			console.log('click pause');
@@ -242,29 +255,40 @@
 			
 			loader.load("./textures/splash.png", (texture)=> {
 				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
+				splash.paused = true ;
 				splash.scale.set(4, 4, 1);
 				group.add( splash );
+				actions.push( splash );
 			});
 			
 			loader.load("./textures/land.png", (texture)=> {
 				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
+				land.paused = true ;
 				land.scale.set(4, 4, 1);
 				group.add( land );
+				actions.push( land );
 			});
 			
 
 			loader.load("./textures/smoke_grey.png", (texture)=> {
 				smokeGrey = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
+				smokeGrey.paused = true ;
 				smokeGrey.scale.set(4, 4, 1);
 				group.add( smokeGrey );
+				actions.push( smokeGrey );
 			});
 			
 
 			loader.load("./textures/smoke_white.png", (texture)=> {
 				smokeWhite = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
+				smokeWhite.paused = true ;
 				smokeWhite.scale.set(4, 4, 1);
 				group.add( smokeWhite );
+				actions.push( smokeWhite );
 			});
+
+
+
 
 
 			spriteMixer.addEventListener('loop', function(event) {
