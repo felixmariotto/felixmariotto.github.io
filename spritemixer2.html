@@ -243,47 +243,55 @@
 				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
 				splash.paused = true ;
 				splash.hideWhenFinished = true ;
+				splash.hideWhenFinished = false ;
 				splash.scale.set(4, 4, 1);
 				group.add( splash );
-				actions.push( splash );
+				actions[0] = splash ;
 			});
 			
 			loader.load("./textures/land.png", (texture)=> {
 				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
 				land.paused = true ;
+				land.paused = false ;
 				land.hideWhenFinished = true ;
+				land.hideWhenFinished = false ;
 				land.scale.set(4, 4, 1);
 				group.add( land );
-				actions.push( land );
+				actions[1] = land ;
 			});
 			
 
 			loader.load("./textures/smoke_grey.png", (texture)=> {
 				smokeGrey = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
 				smokeGrey.paused = true ;
+				smokeGrey.visible = false ;
 				smokeGrey.hideWhenFinished = true ;
+				smokeGrey.hideWhenFinished = false ;
 				smokeGrey.scale.set(4, 4, 1);
 				group.add( smokeGrey );
-				actions.push( smokeGrey );
+				actions[2] = smokeGrey ;
 			});
 			
 
 			loader.load("./textures/smoke_white.png", (texture)=> {
 				smokeWhite = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
 				smokeWhite.paused = true ;
+				smokeWhite.visible = false ;
 				smokeWhite.hideWhenFinished = true ;
+				smokeWhite.hideWhenFinished = false ;
 				smokeWhite.scale.set(4, 4, 1);
 				group.add( smokeWhite );
-				actions.push( smokeWhite );
+				actions[3] = smokeWhite ;
 			});
+
 
 
 
 			spriteMixer.addEventListener('finished', function(event) {
 				actionToPlay = ( actionToPlay + 1 ) % 4 ;
-				console.log(actionToPlay);
 				play();
 			});
+			
 			
 		};
 
