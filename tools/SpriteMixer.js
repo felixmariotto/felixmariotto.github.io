@@ -100,15 +100,18 @@ function SpriteMixer() {
 
 			// Call the user callbacks on the event 'finished'.
 			function callFinishedListeners( actionSprite ) {
-				console.log(actionSprite.tileDisplayDuration)
-				listeners.forEach( (listener)=> {
-					if ( listener.eventName == 'finished' ) {
-						listener.callback({
-							type:'finished',
-							action: actionSprite
-						});
-					};
-				});
+				console.log('bonne version');
+				setTimeout( ()=> {
+					listeners.forEach( (listener)=> {
+						if ( listener.eventName == 'finished' ) {
+							listener.callback({
+								type:'finished',
+								action: actionSprite
+							});
+						};
+					}, actionSprite.tileDisplayDuration );
+				})
+				
 			};
 		};
 
