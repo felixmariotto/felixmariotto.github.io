@@ -243,7 +243,7 @@
 				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
 				splash.paused = true ;
 				splash.hideWhenFinished = true ;
-				splash.hideWhenFinished = false ;
+				splash.clampWhenFinished = false ;
 				splash.scale.set(4, 4, 1);
 				group.add( splash );
 				actions[0] = splash ;
@@ -254,7 +254,7 @@
 				land.paused = true ;
 				land.paused = false ;
 				land.hideWhenFinished = true ;
-				land.hideWhenFinished = false ;
+				land.clampWhenFinished = false ;
 				land.scale.set(4, 4, 1);
 				group.add( land );
 				actions[1] = land ;
@@ -266,7 +266,7 @@
 				smokeGrey.paused = true ;
 				smokeGrey.visible = false ;
 				smokeGrey.hideWhenFinished = true ;
-				smokeGrey.hideWhenFinished = false ;
+				smokeGrey.clampWhenFinished = false ;
 				smokeGrey.scale.set(4, 4, 1);
 				group.add( smokeGrey );
 				actions[2] = smokeGrey ;
@@ -278,7 +278,7 @@
 				smokeWhite.paused = true ;
 				smokeWhite.visible = false ;
 				smokeWhite.hideWhenFinished = true ;
-				smokeWhite.hideWhenFinished = false ;
+				smokeWhite.clampWhenFinished = false ;
 				smokeWhite.scale.set(4, 4, 1);
 				group.add( smokeWhite );
 				actions[3] = smokeWhite ;
@@ -291,7 +291,7 @@
 				actionToPlay = ( actionToPlay + 1 ) % 4 ;
 				play();
 			});
-			
+
 			
 		};
 
