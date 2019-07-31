@@ -31,8 +31,6 @@ function SpriteMixer() {
 
 
 	function updateSprite(actionSprite, milliSec) {
-
-		console.log('coucou')
 		
 		actionSprite.currentDisplayTime += milliSec;
 
@@ -42,9 +40,13 @@ function SpriteMixer() {
 			actionSprite.currentDisplayTime -= actionSprite.tileDisplayDuration;
 			actionSprite.currentTile ++;
 
+			// Restarts the animation if the last frame was reached at last call.
 			if (actionSprite.currentTile == actionSprite.numberOfTiles) {
 				actionSprite.currentTile = 0;
-			}; // Restarts the animation if the last frame was reached at last call.
+				if ( actionSprite.mustLoop ) {
+					console.log('loop');
+				};
+			};
 
 			offsetTexture(actionSprite);
 
