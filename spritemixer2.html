@@ -25,17 +25,12 @@
 
 		#btn-container {
 			position: fixed;
-			height: 100vh;
-			padding: 10px;
-			right: 0;
+			bottom: 20px;
+			left: 50%;
+			transform: translate(-50%);
+			text-align: center;
 			display: flex;
 			flex-direction: column;
-			justify-content: space-evenly;
-			background-color: white;
-		}
-
-		h2 {
-			text-align: center;
 		}
 
 		button {
@@ -44,10 +39,6 @@
 		}
 
 		a {
-			position: fixed;
-			bottom: 20px;
-			left: 50%;
-			transform: translate(-50%);
 			font-size: 1.2em;
 			padding: 12px;
 			border-radius: 10px;
@@ -64,18 +55,15 @@
 
 
 	<div id="btn-container">
-		<h2>Try the functions :</h2>
-		<button onclick="onClickPlay()">actionSprite.playOnce()</button>
-		<button onclick="onClickPlayLoop()">actionSprite.playLoop()</button>
-		<button onclick="onClickPauseNext()">actionSprite.pauseNextEnd()</button>
-		<button onclick="onClickPause()">actionSprite.pause()</button>
-		<button onclick="onClickResume()">actionSprite.resume()</button>
-		<button onclick="onClickStop()">actionSprite.stop()</button>
-		<button onclick="onClickHide()">toggle .hideWhenFinished</button>
-		<button onclick="onClickClamp()">toggle .clampWhenFinished</button>
+		<div>
+			<button onclick="onPlay()">PLAY</button>
+			<button onclick="onPause()">PAUSE</button>
+		</div>
+		<a target='_blank' href="https://github.com/felixmariotto/three-SpriteMixer">< Source code ></a>
 	</div>
 
-	<a target='_blank' href="https://github.com/felixmariotto/three-SpriteMixer">< Source code ></a>
+
+
 
 	<script type="text/javascript">
 
@@ -179,6 +167,19 @@
 			};
 		};
 
+
+
+
+
+
+		////// NEW
+		function onPlay() {
+			console.log('click play');
+		};
+
+		function onPause() {
+			console.log('click pause');
+		};
 
 
 
