@@ -99,11 +99,6 @@
 		var spriteMixer = SpriteMixer();
 
 
-		setTimeout(()=>{
-			spriteMixer.addEventListener('loop', function(event) {
-				console.log(event);
-			});
-		}, 2000);
 
 
 
@@ -274,6 +269,15 @@
 				smokeWhite.position.set(-2.5, -2.5, 0);
 				smokeWhite.scale.set(4, 4, 1);
 				scene.add( smokeWhite );
+			});
+
+
+			spriteMixer.addEventListener('loop', function(event) {
+				console.log(event);
+			});
+
+			spriteMixer.addEventListener('finished', function(event) {
+				console.log('this is finished');
 			});
 			
 

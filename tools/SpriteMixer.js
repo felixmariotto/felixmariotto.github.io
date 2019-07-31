@@ -62,14 +62,14 @@ function SpriteMixer() {
 			// Restarts the animation if the last frame was reached at last call.
 			if (actionSprite.currentTile == actionSprite.numberOfTiles) {
 				actionSprite.currentTile = 0;
-				// Call the user callback on the event 'loop'
+				// Call the user callbacks on the event 'loop'
 				if ( actionSprite.mustLoop == true ) {
 					listeners.forEach( (listener)=> {
 						if ( listener.eventName == 'loop' ) {
-							let event = {
-								coucou:'coucou'
-							};
-							listener.callback( event );
+							listener.callback({
+								type:'loop',
+								action: actionSprite
+							});
 						};
 					});
 				};
@@ -85,7 +85,7 @@ function SpriteMixer() {
 					if (actionSprite.hideWhenFinished == true) {
 						actionSprite.visible = false ;
 					};
-					console.log('finished');
+					callFinishedListeners();
 				
 			} else if (actionSprite.currentTile == 0 &&
 				actionSprite.mustLoop == false &&
@@ -95,7 +95,19 @@ function SpriteMixer() {
 					if (actionSprite.hideWhenFinished == true) {
 						actionSprite.visible = false ;
 					};
-					console.log('finished');
+					callFinishedListeners();
+			};
+
+			// Call the user callbacks on the event 'finished'.
+			function callFinishedListeners( action ) {
+				listeners.forEach( (listener)=> {
+					if ( listener.eventName == 'finished' ) {
+						listener.callback({
+							type:'finished',
+							action: actionSprite
+						});
+					};
+				});
 			};
 		};
 
