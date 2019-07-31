@@ -10,12 +10,12 @@ function SpriteMixer() {
 	var listeners = []; // Will store the user callbacks to call upon loop, finished, etc..
 
 	var api = {
-		actionSprites,
-		update,
-		offsetTexture,
-		updateSprite,
-		ActionSprite,
-		addEventListener
+		actionSprites: actionSprites,
+		update: update,
+		offsetTexture: offsetTexture,
+		updateSprite: updateSprite,
+		ActionSprite: ActionSprite,
+		addEventListener: addEventListener
 	};
 
 
