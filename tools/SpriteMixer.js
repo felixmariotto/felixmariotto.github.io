@@ -35,7 +35,7 @@ function SpriteMixer() {
 		actionSprite.currentDisplayTime += milliSec;
 
 		while (actionSprite.currentDisplayTime > actionSprite.tileDisplayDuration) {
-			// This while loop while be called several time is the passed milliSec
+			// This while loop will be called several times if the passed milliSec
 			// parameter is longer than a frame lasts. See bellow :
 			actionSprite.currentDisplayTime -= actionSprite.tileDisplayDuration;
 			actionSprite.currentTile ++;
@@ -49,11 +49,12 @@ function SpriteMixer() {
 			if (actionSprite.currentTile == actionSprite.numberOfTiles - 1 &&
 				actionSprite.mustLoop == false &&
 			    actionSprite.clampWhenFinished == true) {
-				// Pause at last frame is .clampWhenFinished == true.
+				// Pause at last frame if .clampWhenFinished == true.
 					actionSprite.paused = true ;
 					if (actionSprite.hideWhenFinished == true) {
 						actionSprite.visible = false ;
 					};
+					console.log('finished');
 				
 			} else if (actionSprite.currentTile == 0 &&
 				actionSprite.mustLoop == false &&
@@ -63,6 +64,7 @@ function SpriteMixer() {
 					if (actionSprite.hideWhenFinished == true) {
 						actionSprite.visible = false ;
 					};
+					console.log('finished');
 
 			};
 		};

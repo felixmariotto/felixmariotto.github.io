@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>example spriteMixer</title>
+	<title>example spriteMixer 2</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
 	<script src="./libs/three.js"></script>
@@ -247,13 +247,10 @@
 			});
 			
 			loader.load("./textures/land.png", (texture)=> {
-				console.log(texture)
 				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
 				land.position.set(-2.5, 2.5, 0);
 				land.scale.set(4, 4, 1);
 				scene.add( land );
-			}, undefined,  function (err) {
-				console.error(err)
 			});
 			
 
