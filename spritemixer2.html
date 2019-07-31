@@ -97,92 +97,6 @@
 
 
 
-		//////////////////////////////////////////
-		/// DIFFERENT WAYS OF USING ACTIONSPRITES
-		//////////////////////////////////////////
-		// In the examples bellow it is shown how to loop through
-		// all your actionSprites, but of course you can animate
-		// them independently.
-
-		function onClickPlay() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].playOnce();
-				// Set the .visible = true.
-				// Restart the animation from frame 0.
-				// Set .paused = false -> animate at next update in the loop.
-				// Set .mustLoop = false.
-			};
-		};
-
-		function onClickResume() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].resume();
-				// Set the .visible = true.
-				// Set .paused = false -> animate at next update in the loop.
-				// Unlike .playOnce(), it does not restart at frame 0.
-			};
-		};
-
-		function onClickPlayLoop() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].playLoop();
-				// Set the .visible = true.
-				// Restart the animation from frame 0.
-				// Set .paused = false -> animate at next update in the loop.
-				// Set .mustLoop = true -> animation will restart at last frame.
-			};
-		};
-
-		function onClickPauseNext() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].pauseNextEnd();
-				// Set .mustLoop = false -> animation will pause at last frame.
-			};
-		};
-
-		function onClickPause() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].pause();
-				// Set sprite.paused = true -> next update in the loop 
-				// will have no effect.
-			};
-		};
-
-		function onClickStop() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].stop();
-				// Restart the animation
-				// Set .paused = true -> Animation will pause at frame 0.
-				// If .hideWhenFinished == true, then set .visible = false.
-			};
-		};
-
-		function onClickHide() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].hideWhenFinished =
-					!spriteMixer.actionSprites[i].hideWhenFinished;
-				// If .hideWhenFinished == true, .visible will be
-				// set to false at the end of the animation.
-			};
-		};
-
-		function onClickClamp() {
-			for (let i=0 ; i<spriteMixer.actionSprites.length ; i++) {
-				spriteMixer.actionSprites[i].clampWhenFinished =
-					!spriteMixer.actionSprites[i].clampWhenFinished;
-				// If .clampWhenFinished == true, animation will pause a last
-				// frame when it finishes.
-			};
-		};
-
-
-
-
-
-
-
-
-
 
 
 
@@ -243,7 +157,7 @@
 				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
 				splash.paused = true ;
 				splash.hideWhenFinished = true ;
-				splash.clampWhenFinished = false ;
+				splash.clampWhenFinished = false ; // To ensure that the actions chain smoothly
 				splash.scale.set(4, 4, 1);
 				group.add( splash );
 				actions[0] = splash ;
@@ -252,9 +166,9 @@
 			loader.load("./textures/land.png", (texture)=> {
 				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
 				land.paused = true ;
-				land.paused = false ;
+				land.visible = false ;
 				land.hideWhenFinished = true ;
-				land.clampWhenFinished = false ;
+				land.clampWhenFinished = false ; // To ensure that the actions chain smoothly
 				land.scale.set(4, 4, 1);
 				group.add( land );
 				actions[1] = land ;
@@ -266,7 +180,7 @@
 				smokeGrey.paused = true ;
 				smokeGrey.visible = false ;
 				smokeGrey.hideWhenFinished = true ;
-				smokeGrey.clampWhenFinished = false ;
+				smokeGrey.clampWhenFinished = false ; // To ensure that the actions chain smoothly
 				smokeGrey.scale.set(4, 4, 1);
 				group.add( smokeGrey );
 				actions[2] = smokeGrey ;
@@ -278,7 +192,7 @@
 				smokeWhite.paused = true ;
 				smokeWhite.visible = false ;
 				smokeWhite.hideWhenFinished = true ;
-				smokeWhite.clampWhenFinished = false ;
+				smokeWhite.clampWhenFinished = false ; // To ensure that the actions chain smoothly
 				smokeWhite.scale.set(4, 4, 1);
 				group.add( smokeWhite );
 				actions[3] = smokeWhite ;
@@ -287,7 +201,20 @@
 
 
 
+			////////////////////
+			///	EVENT LISTENER
+			////////////////////
+			/*
+				spriteMixer.addEventListener( eventName, callback )
+				-> eventName is a string, either 'loop' or 'finished'. If 'loop', the callback
+				   will be called everytime an actionSprite with .mustLoop==true finishes a cycle.
+				-> callback is the function you wished to be called at the resolution of this event.
+			*/
+
 			spriteMixer.addEventListener('finished', function(event) {
+				// Upon termination of any action, actionToPlay is incremented and the next action is played.
+				// Note that the finished action will disappear automatically, because of its hideWhenFinished
+				// parameter that we set when it was instantiated.
 				actionToPlay = ( actionToPlay + 1 ) % 4 ;
 				play();
 			});
@@ -298,12 +225,15 @@
 
 
 
+
+		////////////////////
+		///	INTERACTIONS
+		////////////////////
+
 		function play() {
+			// By calling playOnce() instead of playLoop(), we ensure that the action will pause when finished
 			actions[ actionToPlay ].playOnce();
 		};
-
-
-
 
 		function pause() {
 			actions[ actionToPlay ].pause();
