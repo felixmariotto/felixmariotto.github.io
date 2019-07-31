@@ -242,6 +242,7 @@
 			loader.load("./textures/splash.png", (texture)=> {
 				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
 				splash.paused = true ;
+				splash.hideWhenFinished = true ;
 				splash.scale.set(4, 4, 1);
 				group.add( splash );
 				actions.push( splash );
@@ -250,6 +251,7 @@
 			loader.load("./textures/land.png", (texture)=> {
 				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
 				land.paused = true ;
+				land.hideWhenFinished = true ;
 				land.scale.set(4, 4, 1);
 				group.add( land );
 				actions.push( land );
@@ -259,6 +261,7 @@
 			loader.load("./textures/smoke_grey.png", (texture)=> {
 				smokeGrey = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
 				smokeGrey.paused = true ;
+				smokeGrey.hideWhenFinished = true ;
 				smokeGrey.scale.set(4, 4, 1);
 				group.add( smokeGrey );
 				actions.push( smokeGrey );
@@ -268,10 +271,12 @@
 			loader.load("./textures/smoke_white.png", (texture)=> {
 				smokeWhite = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
 				smokeWhite.paused = true ;
+				smokeWhite.hideWhenFinished = true ;
 				smokeWhite.scale.set(4, 4, 1);
 				group.add( smokeWhite );
 				actions.push( smokeWhite );
 			});
+
 
 
 			spriteMixer.addEventListener('finished', function(event) {
