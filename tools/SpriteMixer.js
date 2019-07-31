@@ -85,7 +85,7 @@ function SpriteMixer() {
 					if (actionSprite.hideWhenFinished == true) {
 						actionSprite.visible = false ;
 					};
-					callFinishedListeners();
+					callFinishedListeners( actionSprite );
 				
 			} else if (actionSprite.currentTile == 0 &&
 				actionSprite.mustLoop == false &&
@@ -95,12 +95,12 @@ function SpriteMixer() {
 					if (actionSprite.hideWhenFinished == true) {
 						actionSprite.visible = false ;
 					};
-					callFinishedListeners();
+					callFinishedListeners( actionSprite );
 			};
 
 			// Call the user callbacks on the event 'finished'.
-			function callFinishedListeners( action ) {
-				console.log(action.tileDisplayDuration)
+			function callFinishedListeners( actionSprite ) {
+				console.log(actionSprite.tileDisplayDuration)
 				listeners.forEach( (listener)=> {
 					if ( listener.eventName == 'finished' ) {
 						listener.callback({
