@@ -97,12 +97,13 @@
 		///	INITIALIZATION
 		///////////////////////
 		var spriteMixer = SpriteMixer();
-		spriteMixer.addEventListener('loop', function(event) {
-			console.log(event);
-		});
-		spriteMixer.addEventListener('finished');
 
-		console.log(spriteMixer)
+
+		setTimeout(()=>{
+			spriteMixer.addEventListener('loop', function(event) {
+				console.log(event);
+			});
+		}, 2000);
 
 
 
