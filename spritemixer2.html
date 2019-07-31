@@ -60,8 +60,8 @@
 
 	<div id="btn-container">
 		<div>
-			<button onclick="onPlay()">PLAY</button>
-			<button onclick="onPause()">PAUSE</button>
+			<button onclick="play()">PLAY</button>
+			<button onclick="pause()">PAUSE</button>
 		</div>
 		<a target='_blank' href="https://github.com/felixmariotto/three-SpriteMixer">< Source code ></a>
 	</div>
@@ -180,20 +180,6 @@
 
 
 
-		////// NEW
-
-		function onPlay() {
-			console.log('click play');
-			actions[ actionToPlay ].playOnce();
-		};
-
-
-
-
-		function onPause() {
-			console.log('click pause');
-		};
-
 
 
 
@@ -288,19 +274,29 @@
 			});
 
 
-
-
-
-			spriteMixer.addEventListener('loop', function(event) {
-				console.log(event);
-			});
-
 			spriteMixer.addEventListener('finished', function(event) {
-				console.log(event);
+				actionToPlay = ( actionToPlay + 1 ) % 4 ;
+				console.log(actionToPlay);
+				play();
 			});
 			
-
 		};
+
+
+
+
+		function play() {
+			actions[ actionToPlay ].playOnce();
+		};
+
+
+
+
+		function pause() {
+			actions[ actionToPlay ].pause();
+		};
+
+
 
 
 
