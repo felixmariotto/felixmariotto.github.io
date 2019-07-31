@@ -7,13 +7,24 @@ function SpriteMixer() {
 
 
 	var actionSprites = []; // Will store every new actionSprite.
+	var listeners = []; // Will store the user callbacks to call upon loop, finished, etc..
 
 	var api = {
-		actionSprites: actionSprites,
-		update: update,
-		offsetTexture: offsetTexture,
-		updateSprite: updateSprite,
-		ActionSprite: ActionSprite
+		actionSprites,
+		update,
+		offsetTexture,
+		updateSprite,
+		ActionSprite,
+		addEventListener
+	};
+
+
+	function addEventListener( eventName, callback ) {
+		if ( eventName && callback ) {
+			listeners.push(  { eventName, callback }  );
+		} else {
+			throw 'an argument is missing';
+		};
 	};
 
 
@@ -67,7 +78,6 @@ function SpriteMixer() {
 						actionSprite.visible = false ;
 					};
 					console.log('finished');
-					dispatchFinished();
 				
 			} else if (actionSprite.currentTile == 0 &&
 				actionSprite.mustLoop == false &&
@@ -78,14 +88,7 @@ function SpriteMixer() {
 						actionSprite.visible = false ;
 					};
 					console.log('finished');
-					dispatchFinished();
 			};
-		};
-
-		function dispatchFinished() {
-			let event = new Event( 'finished' );
-			event.coucou = 'coucou';
-			api.dispatchEvent( event );
 		};
 
 	};
