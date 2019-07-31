@@ -8,6 +8,14 @@ function SpriteMixer() {
 
 	var actionSprites = []; // Will store every new actionSprite.
 
+	var api = {
+		actionSprites: actionSprites,
+		update: update,
+		offsetTexture: offsetTexture,
+		updateSprite: updateSprite,
+		ActionSprite: ActionSprite
+	};
+
 
 	function update(delta) { // Update every stored actionSprite if needed.
 		if (actionSprites.length > 0) {
@@ -69,8 +77,12 @@ function SpriteMixer() {
 						actionSprite.visible = false ;
 					};
 					console.log('finished');
-
 			};
+		};
+
+		function dispatchFinished() {
+			let event = new Event();
+			event.coucou = 'coucou';
 		};
 
 	};
@@ -174,14 +186,6 @@ function SpriteMixer() {
 
 
 
-
-
-	return {
-		actionSprites: actionSprites,
-		update: update,
-		offsetTexture: offsetTexture,
-		updateSprite: updateSprite,
-		ActionSprite: ActionSprite
-	};
+	return api;
 
 };
