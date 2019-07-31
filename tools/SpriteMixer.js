@@ -43,7 +43,6 @@ function SpriteMixer() {
 			// Restarts the animation if the last frame was reached at last call.
 			if (actionSprite.currentTile == actionSprite.numberOfTiles) {
 				actionSprite.currentTile = 0;
-				console.log(actionSprite);
 				if ( actionSprite.mustLoop == true ) {
 					console.log('loop');
 				};
@@ -156,7 +155,7 @@ function SpriteMixer() {
 		sprite.currentDisplayTime = 0;
 		sprite.currentTile = 0;
 		sprite.paused = false;
-		sprite.mustLoop == true;
+		sprite.mustLoop = true;
 		sprite.clampWhenFinished = true;
 		sprite.hideWhenFinished = false;
 
