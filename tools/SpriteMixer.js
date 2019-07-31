@@ -67,6 +67,7 @@ function SpriteMixer() {
 						actionSprite.visible = false ;
 					};
 					console.log('finished');
+					dispatchFinished();
 				
 			} else if (actionSprite.currentTile == 0 &&
 				actionSprite.mustLoop == false &&
@@ -77,6 +78,7 @@ function SpriteMixer() {
 						actionSprite.visible = false ;
 					};
 					console.log('finished');
+					dispatchFinished();
 			};
 		};
 
