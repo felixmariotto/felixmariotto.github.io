@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
 	<script src="./libs/three.js"></script>
-	<script src="./libs/OrbitControls.js"></script>
 	<script src="./libs/stats.min.js"></script>
 	<script src="./tools/SpriteMixer.js"></script>
 
@@ -87,14 +86,14 @@
 		})
 		
 		
-		var scene, renderer, camera, controls, clock, stats;
+		var scene, renderer, camera, controls, clock, stats, group;
 		const WIDTH = window.innerWidth;
 		const HEIGHT = window.innerHeight;
 
 
 
 		///////////////////////
-		///	INITIALIZATION
+		///	INITIALISATION
 		///////////////////////
 		var spriteMixer = SpriteMixer();
 
@@ -198,12 +197,7 @@
 			scene.background = new THREE.Color(0x666666);
 
 			camera = new THREE.PerspectiveCamera(30, WIDTH/HEIGHT, 0.1, 1000);
-
-			controls = new THREE.OrbitControls(camera, document.body);
-			controls.autoRotate = true ;
-			controls.autoRotateSpeed = 4;
 			camera.position.set(0, 8, 30);
-			controls.update();
 
 			renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
 			renderer.setSize(WIDTH, HEIGHT);
@@ -213,6 +207,9 @@
 
 			stats = new Stats();
 			document.body.appendChild(stats.dom);
+
+			group = new THREE.Group();
+			scene.add( group );
 
 
 
@@ -243,32 +240,28 @@
 			
 			loader.load("./textures/splash.png", (texture)=> {
 				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
-				splash.position.set(2.5, 2.5, 0);
 				splash.scale.set(4, 4, 1);
-				scene.add( splash );
+				group.add( splash );
 			});
 			
 			loader.load("./textures/land.png", (texture)=> {
 				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
-				land.position.set(-2.5, 2.5, 0);
 				land.scale.set(4, 4, 1);
-				scene.add( land );
+				group.add( land );
 			});
 			
 
 			loader.load("./textures/smoke_grey.png", (texture)=> {
 				smokeGrey = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
-				smokeGrey.position.set(2.5, -2.5, 0);
 				smokeGrey.scale.set(4, 4, 1);
-				scene.add( smokeGrey );
+				group.add( smokeGrey );
 			});
 			
 
 			loader.load("./textures/smoke_white.png", (texture)=> {
 				smokeWhite = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
-				smokeWhite.position.set(-2.5, -2.5, 0);
 				smokeWhite.scale.set(4, 4, 1);
-				scene.add( smokeWhite );
+				group.add( smokeWhite );
 			});
 
 

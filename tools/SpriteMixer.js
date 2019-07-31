@@ -100,7 +100,6 @@ function SpriteMixer() {
 
 			// Call the user callbacks on the event 'finished'.
 			function callFinishedListeners( actionSprite ) {
-				console.log('bonne version');
 				setTimeout( ()=> {
 					listeners.forEach( (listener)=> {
 						if ( listener.eventName == 'finished' ) {
