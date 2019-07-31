@@ -97,6 +97,9 @@
 		///	INITIALIZATION
 		///////////////////////
 		var spriteMixer = SpriteMixer();
+		spriteMixer.addEventListener('finished', function(event) {
+			console.log(event);
+		});
 
 
 

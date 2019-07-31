@@ -81,8 +81,9 @@ function SpriteMixer() {
 		};
 
 		function dispatchFinished() {
-			let event = new Event();
+			let event = new Event( 'finished' );
 			event.coucou = 'coucou';
+			api.dispatchEvent( event );
 		};
 
 	};
