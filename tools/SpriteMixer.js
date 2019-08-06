@@ -41,7 +41,6 @@ function SpriteMixer() {
 
 
 	function offsetTexture(actionSprite) {
-		console.log('offset')
 		// This offsets the texture to make the next frame of the animation appear.
 		let currentColumn = actionSprite.currentTile % actionSprite.tilesHorizontal;
 		actionSprite.material.map.offset.x = currentColumn / actionSprite.tilesHorizontal;

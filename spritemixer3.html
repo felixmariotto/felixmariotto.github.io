@@ -213,6 +213,10 @@
 
 			if ( isRunning ) {
 				actionSprite.position.x += 0.01;
+				console.log( actionSprite.position.x );
+				if ( actionSprite.position.x > 1 ) {
+					actionSprite.position.x = -1 ;
+				};
 			};
 		};
 
