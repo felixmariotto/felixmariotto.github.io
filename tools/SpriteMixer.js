@@ -130,10 +130,13 @@ function SpriteMixer() {
 	function resume() {
 		if ( this.currentTile > this.numTiles -1 ) {
 			this.currentTile = 0;
+			console.log('this.currentTile = 0;')
 		};
 		this.paused = false ;
 		this.visible = true ;
 	};
+
+	console.log('fix');
 
 	// reveal the sprite and play it in a loop
 	function playLoop() {
