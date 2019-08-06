@@ -40,7 +40,8 @@ function SpriteMixer() {
 	};
 
 
-	function offsetTexture(actionSprite) {
+	function offsetTexture( actionSprite, factor ) {
+		factor = factor || 1 ;
 		// This offsets the texture to make the next frame of the animation appear.
 		let currentColumn = actionSprite.currentTile % actionSprite.tilesHorizontal;
 		actionSprite.material.map.offset.x = currentColumn / actionSprite.tilesHorizontal;
@@ -164,6 +165,8 @@ function SpriteMixer() {
 	// index starts at 0.
 	function setFrame( frameID, setCurrentTile ) {
 		console.log( 'set idle frame : ' + frameID );
+		this.stop();
+		offsetTexture( this, frameID + 1 );
 	};
 
 
