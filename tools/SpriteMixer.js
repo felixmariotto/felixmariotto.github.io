@@ -165,13 +165,14 @@ function SpriteMixer() {
 	function setFrame( frameID, setCurrentTile ) {
 		console.log( 'set idle frame : ' + frameID );
 		this.stop();
-		for (let i=0 ; i<frameID ; i++) {
+		for (let i=0 ; i < frameID -1 ; i++) {
 			offsetTexture(this);
+			console.log( i )
 		};
 	};
 
 
-	console.log('version 3')
+	console.log('version 4')
 
 
 

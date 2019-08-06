@@ -167,7 +167,7 @@
 			var loader = new THREE.TextureLoader();
 			
 			loader.load("./textures/character.png", (texture)=> {
-				actionSprite = spriteMixer.ActionSprite(texture, 10, 1, 9, 55);
+				actionSprite = spriteMixer.ActionSprite(texture, 10, 1, 9, 45);
 				actionSprite.paused = true;
 				actionSprite.scale.set(2, 2, 1);
 				scene.add( actionSprite );
