@@ -128,6 +128,9 @@ function SpriteMixer() {
 
 	// resume the action if it was paused
 	function resume() {
+		if ( this.currentTile > this.numTiles -1 ) {
+			this.currentTile = 0;
+		};
 		this.paused = false ;
 		this.visible = true ;
 	};
@@ -162,9 +165,7 @@ function SpriteMixer() {
 	};
 
 	// Set manually a frame of the animation. Frame indexing starts at 0.
-	// if setAsCurrentTile is true, actionFrame.currentTile will be set at the given index,
-	// so that the next .resume() will start from this point.
-	function setFrame( frameID, setAsCurrentTile ) {
+	function setFrame( frameID ) {
 		this.pause();
 		this.currentTile = frameID;
 		offsetTexture(this);
