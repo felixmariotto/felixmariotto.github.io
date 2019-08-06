@@ -40,9 +40,8 @@ function SpriteMixer() {
 	};
 
 
-	function offsetTexture( actionSprite, factor ) {
-		factor = factor || 1 ;
-		// This offsets the texture to make the next frame of the animation appear.
+	// This offsets the texture to make the next frame of the animation appear.
+	function offsetTexture( actionSprite ) {
 		let currentColumn = actionSprite.currentTile % actionSprite.tilesHorizontal;
 		actionSprite.material.map.offset.x = currentColumn / actionSprite.tilesHorizontal;
 		let currentRow = Math.floor(actionSprite.currentTile / actionSprite.tilesHorizontal);
@@ -50,7 +49,7 @@ function SpriteMixer() {
 	};
 
 
-	function updateSprite(actionSprite, milliSec) {
+	function updateSprite( actionSprite, milliSec ) {
 		
 		actionSprite.currentDisplayTime += milliSec;
 
@@ -166,7 +165,9 @@ function SpriteMixer() {
 	function setFrame( frameID, setCurrentTile ) {
 		console.log( 'set idle frame : ' + frameID );
 		this.stop();
-		offsetTexture( this, frameID + 1 );
+		for (let i=0 ; i<frameID ; i++) {
+			offsetTexture( this );
+		};
 	};
 
 
