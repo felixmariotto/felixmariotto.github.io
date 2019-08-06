@@ -169,7 +169,7 @@
 			loader.load("./textures/character.png", (texture)=> {
 				actionSprite = spriteMixer.ActionSprite(texture, 10, 1, 9, 55);
 				actionSprite.paused = true;
-				actionSprite.hideWhenFinished = true ;
+				// actionSprite.hideWhenFinished = true ;
 				actionSprite.scale.set(2, 2, 1);
 				scene.add( actionSprite );
 			});
@@ -177,7 +177,7 @@
 		};
 
 
-
+		console.log('version 1')
 
 
 		function run(e) {
