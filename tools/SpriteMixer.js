@@ -128,17 +128,14 @@ function SpriteMixer() {
 
 	// resume the action if it was paused
 	function resume() {
-		console.log(this.currentTile);
-		console.log(this.numberOfTiles);
+		// this is in case setFrame was used to set a frame outside of the
+		// animation range, which would lead to bugs.
 		if ( this.currentTile > this.numberOfTiles -1 ) {
 			this.currentTile = 0;
-			console.log('this.currentTile = 0;')
 		};
 		this.paused = false ;
 		this.visible = true ;
 	};
-
-	console.log('fix3');
 
 	// reveal the sprite and play it in a loop
 	function playLoop() {
