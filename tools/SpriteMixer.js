@@ -176,7 +176,7 @@ function SpriteMixer() {
 	};
 
 
-	console.log('version')
+	console.log('version 2')
 
 
 
