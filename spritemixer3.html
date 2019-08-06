@@ -42,13 +42,13 @@
 
 			@keyframes blink_div {
 				0% {
-					background-color: #999999;
+					background-color: #ffffff;
 				}
 				50% {
-					background-color: #555555;
+					background-color: #777777;
 				}
 				100% {
-					background-color: #999999;
+					background-color: #ffffff;
 				}
 			}
 
@@ -177,7 +177,7 @@
 
 
 
-
+		// Starts (or restarts) the running animation
 		function run(e) {
 			e.preventDefault();
 			actionSprite.resume();
@@ -185,11 +185,15 @@
 		};
 
 
-		// index starts at 0.
+		// Stop the running animation and set the texture on the 9th frame.
+		// The 9th frame is out of the range of the animation,
+		// which is from 0 to 8. You can also set a frame included in the
+		// animation range, and actionSprite.resume() will restarts the
+		// animation from the frame you manually set.
 		function stop(e) {
 			e.preventDefault();
 			actionSprite.stop();
-			actionSprite.setFrame( 5 );
+			actionSprite.setFrame( 9 );
 			isRunning = false;
 		};
 
@@ -210,6 +214,7 @@
 
 			spriteMixer.update(delta);
 
+			// Make the actionSprite move in the scene.
 			if ( isRunning ) {
 				actionSprite.position.x += 0.01;
 				if ( actionSprite.position.x > 1.7 ) {
