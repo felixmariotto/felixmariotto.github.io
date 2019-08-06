@@ -161,23 +161,15 @@ function SpriteMixer() {
 		offsetTexture(this);
 	};
 
-	// index starts at 0.
-	function setFrame( frameID, setCurrentTile ) {
-		console.log( 'set idle frame : ' + frameID );
+	// Set manually a frame of the animation. Frame indexing starts at 0.
+	// if setAsCurrentTile is true, actionFrame.currentTile will be set at the given index,
+	// so that the next .resume() will start from this point.
+	function setFrame( frameID, setAsCurrentTile ) {
 		this.pause();
 		this.currentTile = frameID;
 		offsetTexture(this);
-		/*
-		this.stop();
-		for (let i=0 ; i < frameID -1 ; i++) {
-			offsetTexture(this);
-			console.log( i )
-		};
-		*/
 	};
 
-
-	console.log('version 5')
 
 
 
