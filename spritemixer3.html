@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>example spriteMixer 2</title>
+	<title>example spriteMixer - setting frame manually</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
 	<script src="./libs/three.js"></script>
@@ -89,9 +89,6 @@
 		///////////////////////
 
 		var spriteMixer = SpriteMixer();
-		var group;
-		var actions = []; // This will store the actionSprites that we want to play, in playing order.
-		var actionToPlay = 0 ;
 
 
 
@@ -123,9 +120,6 @@
 			stats = new Stats();
 			document.body.appendChild(stats.dom);
 
-			group = new THREE.Group();
-			scene.add( group );
-
 
 
 
@@ -154,89 +148,12 @@
 			var loader = new THREE.TextureLoader();
 			
 			loader.load("./textures/character.png", (texture)=> {
-				splash = spriteMixer.ActionSprite(texture, 10, 1, 9, 55);
-				splash.paused = true ;
-				splash.hideWhenFinished = true ;
-				splash.clampWhenFinished = false ; // To ensure that the actions chain smoothly
-				splash.scale.set(4, 4, 1);
-				group.add( splash );
-				actions[0] = splash ;
-			});
-			
-			loader.load("./textures/land.png", (texture)=> {
-				land = spriteMixer.ActionSprite(texture, 4, 3, 8, 55);
-				land.paused = true ;
-				land.visible = false ;
-				land.hideWhenFinished = true ;
-				land.clampWhenFinished = false ; // To ensure that the actions chain smoothly
-				land.scale.set(4, 4, 1);
-				group.add( land );
-				actions[1] = land ;
-			});
-			
-
-			loader.load("./textures/smoke_grey.png", (texture)=> {
-				smokeGrey = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
-				smokeGrey.paused = true ;
-				smokeGrey.visible = false ;
-				smokeGrey.hideWhenFinished = true ;
-				smokeGrey.clampWhenFinished = false ; // To ensure that the actions chain smoothly
-				smokeGrey.scale.set(4, 4, 1);
-				group.add( smokeGrey );
-				actions[2] = smokeGrey ;
-			});
-			
-
-			loader.load("./textures/smoke_white.png", (texture)=> {
-				smokeWhite = spriteMixer.ActionSprite(texture, 3, 3, 9, 55);
-				smokeWhite.paused = true ;
-				smokeWhite.visible = false ;
-				smokeWhite.hideWhenFinished = true ;
-				smokeWhite.clampWhenFinished = false ; // To ensure that the actions chain smoothly
-				smokeWhite.scale.set(4, 4, 1);
-				group.add( smokeWhite );
-				actions[3] = smokeWhite ;
+				actionSprite = spriteMixer.ActionSprite(texture, 10, 1, 9, 55);
+				actionSprite.hideWhenFinished = true ;
+				actionSprite.scale.set(2, 2, 1);
+				scene.add( actionSprite );
 			});
 
-
-
-
-			////////////////////
-			///	EVENT LISTENER
-			////////////////////
-			/*
-				spriteMixer.addEventListener( eventName, callback )
-				-> eventName is a string, either 'loop' or 'finished'. If 'loop', the callback
-				   will be called everytime an actionSprite with .mustLoop==true finishes a cycle.
-				-> callback is the function you wished to be called at the resolution of this event.
-			*/
-
-			spriteMixer.addEventListener('finished', function(event) {
-				// Upon termination of any action, actionToPlay is incremented and the next action is played.
-				// Note that the finished action will disappear automatically, because of its hideWhenFinished
-				// parameter that we set when it was instantiated.
-				actionToPlay = ( actionToPlay + 1 ) % 4 ;
-				play();
-			});
-
-			
-		};
-
-
-
-
-
-		////////////////////
-		///	INTERACTIONS
-		////////////////////
-
-		function play() {
-			// By calling playOnce() instead of playLoop(), we ensure that the action will pause when finished
-			actions[ actionToPlay ].playOnce();
-		};
-
-		function pause() {
-			actions[ actionToPlay ].pause();
 		};
 
 
