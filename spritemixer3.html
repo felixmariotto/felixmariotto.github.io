@@ -153,8 +153,8 @@
 
 			var loader = new THREE.TextureLoader();
 			
-			loader.load("./textures/splash.png", (texture)=> {
-				splash = spriteMixer.ActionSprite(texture, 4, 3, 7, 55);
+			loader.load("./textures/character.png", (texture)=> {
+				splash = spriteMixer.ActionSprite(texture, 10, 1, 9, 55);
 				splash.paused = true ;
 				splash.hideWhenFinished = true ;
 				splash.clampWhenFinished = false ; // To ensure that the actions chain smoothly
