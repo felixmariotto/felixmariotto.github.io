@@ -161,6 +161,11 @@ function SpriteMixer() {
 		offsetTexture(this);
 	};
 
+	// index starts at 0.
+	function setFrame( frameID, setCurrentTile ) {
+		console.log( 'set idle frame : ' + frameID );
+	};
+
 
 
 
@@ -193,6 +198,7 @@ function SpriteMixer() {
 		sprite.tilesVertical = tilesVert ;
 		sprite.numberOfTiles = numTiles ;
 		sprite.tileDisplayDuration = tileDispDuration;
+		sprite.setFrame = setFrame;
 		sprite.currentDisplayTime = 0;
 		sprite.currentTile = 0;
 		sprite.paused = false;

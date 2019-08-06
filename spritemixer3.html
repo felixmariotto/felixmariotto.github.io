@@ -96,6 +96,7 @@
 		///////////////////////
 
 		var spriteMixer = SpriteMixer();
+		var actionSprite, isRunning;
 
 
 
@@ -167,6 +168,7 @@
 			
 			loader.load("./textures/character.png", (texture)=> {
 				actionSprite = spriteMixer.ActionSprite(texture, 10, 1, 9, 55);
+				actionSprite.paused = true;
 				actionSprite.hideWhenFinished = true ;
 				actionSprite.scale.set(2, 2, 1);
 				scene.add( actionSprite );
@@ -178,16 +180,19 @@
 
 
 
-
 		function run(e) {
 			e.preventDefault();
-			console.log('run');
+			actionSprite.playLoop();
+			isRunning = true;
 		};
 
 
+		// index starts at 0.
 		function stop(e) {
 			e.preventDefault();
-			console.log('stop');
+			actionSprite.stop();
+			actionSprite.setFrame( 9, false );
+			isRunning = false;
 		};
 
 
@@ -204,7 +209,12 @@
 			/////////////////////
 			///	   UPDATE
 			/////////////////////
+
 			spriteMixer.update(delta);
+
+			if ( isRunning ) {
+				actionSprite.position.x += 0.01;
+			};
 		};
 
 
