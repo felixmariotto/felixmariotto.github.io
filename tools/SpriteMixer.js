@@ -42,6 +42,7 @@ function SpriteMixer() {
 
 	// This offsets the texture to make the next frame of the animation appear.
 	function offsetTexture( actionSprite ) {
+		console.log('offset')
 		let currentColumn = actionSprite.currentTile % actionSprite.tilesHorizontal;
 		actionSprite.material.map.offset.x = currentColumn / actionSprite.tilesHorizontal;
 		let currentRow = Math.floor(actionSprite.currentTile / actionSprite.tilesHorizontal);
@@ -73,6 +74,7 @@ function SpriteMixer() {
 								type:'loop',
 								action: actionSprite
 							});
+							console.log('fire loop event');
 						};
 					});
 				};
