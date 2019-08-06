@@ -128,6 +128,8 @@ function SpriteMixer() {
 
 	// resume the action if it was paused
 	function resume() {
+		console.log(this.currentTile);
+		console.log(this.numTiles);
 		if ( this.currentTile > this.numTiles -1 ) {
 			this.currentTile = 0;
 			console.log('this.currentTile = 0;')
@@ -136,7 +138,7 @@ function SpriteMixer() {
 		this.visible = true ;
 	};
 
-	console.log('fix');
+	console.log('fix2');
 
 	// reveal the sprite and play it in a loop
 	function playLoop() {
