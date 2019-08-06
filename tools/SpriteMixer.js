@@ -59,8 +59,11 @@ function SpriteMixer() {
 			actionSprite.currentDisplayTime -= actionSprite.tileDisplayDuration;
 			actionSprite.currentTile ++;
 
+			console.log('update sprite')
+
 			// Restarts the animation if the last frame was reached at last call.
 			if (actionSprite.currentTile == actionSprite.numberOfTiles -1) {
+				console.log('restart')
 				actionSprite.currentTile = 0;
 				// Call the user callbacks on the event 'loop'
 				if ( actionSprite.mustLoop == true ) {
