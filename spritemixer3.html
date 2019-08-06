@@ -34,13 +34,23 @@
 		}
 
 			#btn-container>div {
+				font-size: 1.2em;
+				padding: 8px;
 				margin-bottom: 15px;
+				animation: blink_div 1.5s linear infinite;
 			}
 
-		button {
-			font-size: 1.2em;
-			padding: 8px;
-		}
+			@keyframes blink_div {
+				0% {
+					background-color: #999999;
+				}
+				50% {
+					background-color: #777777;
+				}
+				100% {
+					background-color: #999999;
+				}
+			}
 
 		a {
 			font-size: 1.2em;
@@ -59,10 +69,7 @@
 
 
 	<div id="btn-container">
-		<div>
-			<button onclick="play()">PLAY</button>
-			<button onclick="pause()">PAUSE</button>
-		</div>
+		<div id="instruction">Press a key on click to run</div>
 		<a target='_blank' href="https://github.com/felixmariotto/three-SpriteMixer">< Source code ></a>
 	</div>
 
@@ -78,7 +85,7 @@
 		})
 		
 		
-		var scene, renderer, camera, controls, clock, stats;
+		var scene, renderer, camera, clock, stats;
 		const WIDTH = window.innerWidth;
 		const HEIGHT = window.innerHeight;
 
@@ -91,6 +98,20 @@
 		var spriteMixer = SpriteMixer();
 
 
+
+
+
+		//////////////////////
+		///    LISTENERS
+		//////////////////////
+
+		document.addEventListener('keydown', run, false);
+		document.addEventListener('touchstart', run, false);
+		document.addEventListener('mousedown', run, false);
+
+		document.addEventListener('keyup', stop, false);
+		document.addEventListener('touchend', stop, false);
+		document.addEventListener('mouseup', stop, false);
 
 
 
@@ -123,9 +144,6 @@
 
 
 
-
-
-
 			////////////////////
 			///	CUSTOM CODE
 			////////////////////
@@ -154,6 +172,22 @@
 				scene.add( actionSprite );
 			});
 
+		};
+
+
+
+
+
+
+		function run(e) {
+			e.preventDefault();
+			console.log('run');
+		};
+
+
+		function stop(e) {
+			e.preventDefault();
+			console.log('stop');
 		};
 
 
