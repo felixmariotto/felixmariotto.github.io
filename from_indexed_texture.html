@@ -54,11 +54,24 @@
 					font-size: 3em;
 				}
 
-		a {
+		#ref {
+			position: fixed;
+			top: 0px;
+			padding: 3px;
+			text-align: center;
+			font-size: 0.9em;
+		}
+
+		#github {
 			position: fixed;
 			bottom: 0px;
 			right: 0px;
 			padding: 5px;
+			font-size: 3em;
+			background-color: white;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 4px;
 		}
 
 		h1 {
@@ -92,6 +105,8 @@
 			<div class="btn arrow" onmousedown="runRight()" ontouchstart="runRight()" onmouseup="stopRunning()" ontouchend="stopRunning()">🡆</div>
 		</div>
 	</div>
+
+	<a id="github" href="https://github.com/felixmariotto/three-SpriteMixer/blob/master/examples/from_indexed_texture.html">< Code ></a>
 
 	
 
